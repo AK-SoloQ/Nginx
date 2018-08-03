@@ -1,5 +1,5 @@
-# Nginx
-##Nginx Configuration With Node.js
+#Nginx
+## Nginx Configuration With Node.js 
 ```  
  
 server {
@@ -50,65 +50,58 @@ server {
     		# fetch OCSP records from URL in ssl_certificate and cache them
     		ssl_stapling on;
     		ssl_stapling_verify on;
-		resolver 8.8.8.8;
+			resolver 8.8.8.8;
 
 
 		proxy_set_header Host $http_host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
 
 		location /socket.io/ {
 			proxy_set_header X-Real-IP $remote_addr;
-      			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      			proxy_set_header Host $http_host;
-      			proxy_set_header X-NginX-Proxy true;
+      		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      		proxy_set_header Host $http_host;
+      		proxy_set_header X-NginX-Proxy true;
 
-      			proxy_pass https://localhost:8483/socket.io/;
-      			proxy_redirect off;
+      		proxy_pass https://localhost:8483/socket.io/;
+      		proxy_redirect off;
 
-     			proxy_http_version 1.1;
-     			proxy_set_header Upgrade $http_upgrade;
-      			proxy_set_header Connection "upgrade";
+     		proxy_http_version 1.1;
+     		proxy_set_header Upgrade $http_upgrade;
+      		proxy_set_header Connection "upgrade";
 
 		}
 
 		location /app/ {
 			proxy_http_version 1.1;
-
 			proxy_set_header Upgrade $http_upgrade;
 			proxy_set_header Connection "upgrade";
-
-                	proxy_pass "https://localhost:8483/";
+			proxy_pass "https://localhost:8483/";
 		}
 
 		location /api/v1/dev/ {
-                        proxy_http_version 1.1;
-
-                        proxy_set_header Upgrade $http_upgrade;
-                        proxy_set_header Connection "upgrade";
-
-                        proxy_pass "https://localhost:8283/";
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_pass "https://localhost:8283/";
                 }
 		location /sdev/ {
-                        proxy_set_header X-Real-IP $remote_addr;
-                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                        proxy_set_header Host $http_host;
-                        proxy_set_header X-NginX-Proxy true;
-
-                        proxy_pass https://localhost:8283/socket.io/;
-                        proxy_redirect off;
-
-                        proxy_http_version 1.1;
-                        proxy_set_header Upgrade $http_upgrade;
-                        proxy_set_header Connection "upgrade";
-
-		      	# proxy_pass https://127.0.0.1:8283/socket.io/;
-    		 	# proxy_http_version 1.1;
-    			proxy_set_header Upgrade $http_upgrade;
-    			proxy_set_header Connection "upgrade";
-    			proxy_set_header Host $host;
-    			proxy_cache_bypass $http_upgrade;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-NginX-Proxy tru
+            proxy_pass https://localhost:8283/socket.io/;
+            proxy_redirect of
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade
+		    # proxy_pass https://127.0.0.1:8283/socket.io/;
+    		# proxy_http_version 1.1;
+    		proxy_set_header Upgrade $http_upgrade;
+    		proxy_set_header Connection "upgrade";
+    		proxy_set_header Host $host;
+    		proxy_cache_bypass $http_upgrade;
 
                 }
 
@@ -125,22 +118,22 @@ server {
 		location /web/ {
 			proxy_http_version 1.1;
 
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
+          	proxy_set_header Upgrade $http_upgrade;
+          	proxy_set_header Connection "upgrade";
 			proxy_pass "https://localhost:8987/";
 			#root /var/www/vhosts/domain.com/httpdocs/Web/;
 			#index index.html;
 		}
 
 		location /pro/domain/ {
-			proxy_http_version 1.1;
+		  	proxy_http_version 1.1;
 
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "upgrade";
-          proxy_pass "https://localhost:8558/";
+          	proxy_set_header Upgrade $http_upgrade;
+          	proxy_set_header Connection "upgrade";
+          	proxy_pass "https://localhost:8558/";
 
-			#root /var/www/vhosts/domain.com/httpdocs/domain_pro/domainPro/dist/;
-          #index index.html;
+		  	#root /var/www/vhosts/domain.com/httpdocs/domain_pro/domainPro/dist/;
+          	#index index.html;
 
 		}
 
@@ -155,8 +148,8 @@ server {
 			index index.html;
 		}
 		location /cgu/ {
-          root /var/www/vhosts/domain.com/httpdocs/CGU/;
-          index index.html;
+          	root /var/www/vhosts/domain.com/httpdocs/CGU/;
+          	index index.html;
                 }
 
 		error_page 404 500 501 503 504 /index.html;
@@ -168,4 +161,3 @@ server {
 
         }
 ```
-
